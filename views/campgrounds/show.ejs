@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= camp.title %>
+    </title>
+</head>
+
+<body style="font-family: arial;">
+    <h1>
+        <%= camp.title %>
+    </h1>
+    <ul>
+        <li>
+            <%= camp.location %>
+        </li>
+    </ul>
+    <a href="/campgrounds/<%= camp._id %>/edit" style="text-decoration: none; color: red;">Edit</a>
+    <br>
+    <a href="/campgrounds" style="text-decoration: none; color: red;">All Campgrounds</a>
+    <br>
+    <form action="/campgrounds/<%= camp._id %>?_method=DELETE" method="post">
+        <button type="submit">Delete</button>
+    </form>
+
+</body>
+
+</html>

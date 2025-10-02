@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campgrounds</title>
+</head>
+
+<body style="font-family: arial;">
+    <h1>All Campgrounds</h1>
+    <a href="/campgrounds/new" style="text-decoration: none; color: red;"">Add New Campground</a>
+    <hr>
+    <ul>
+        <% for(let camp of campgrounds){ %>
+            <li>
+                <a href=" /campgrounds/<%=camp._id %>" style="text-decoration: none; color: green;">
+        <%= camp.title %>
+    </a>
+    </li>
+    <% } %>
+        </ul>
+</body>
+
+</html>
