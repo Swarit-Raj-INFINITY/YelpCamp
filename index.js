@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000
 const path = require('path')
+const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 const Campground = require('./models/campgrounds')
@@ -15,6 +16,7 @@ mongoose.connect('mongodb://localhost:27017/YelpCamp')
         console.log(err)
     })
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
@@ -24,11 +26,7 @@ app.listen(port, () => {
     console.log(`listening on  http://localhost:${port}`)
 })
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
-app.get("/home", (req, res) => {
+app.get("/", (req, res) => {
     res.render("home")
 })
 
@@ -59,7 +57,7 @@ app.get("/campgrounds/:id/edit", async (req, res) => {
 
 app.put("/campgrounds/:id", async (req, res) => {
     const { id } = req.params
-    let camp = await Campground.findByIdAndUpdate(id, { title: req.body.title, location: req.body.location })
+    let camp = await Campground.findByIdAndUpdate(id, { ...req.body })
     res.redirect(`/campgrounds/${camp._id}`)
 })
 

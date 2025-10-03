@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <%= camp.title %>
-    </title>
-</head>
-
-<body style="font-family: arial;">
+<% layout("./layout/boilerplate") %>
     <h1>Edit Campground</h1>
     <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="post">
         <label for=" title">Title</label>
@@ -18,8 +7,11 @@
         <label for="location">Location</label>
         <input type="text" name="location" id="location" value="<%= camp.location %>">
         <br>
+        <label for="price">Price</label>
+        <input type="text" name="price" id="price" value="<%= camp.price %>">
+        <br>
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"><%= camp.description %></textarea>
+        <br>
         <button type="submit">Submit</button>
     </form>
-</body>
-
-</html>
